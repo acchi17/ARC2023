@@ -44,17 +44,30 @@ def recvcmd_th(socket):
 
 def main():
     client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_sock.settimeout(3.0)
     try:
+        print('Connecting to server.')
         client_sock.connect((SERVER_IP_ADDR, SERVER_PORT_NUM))
         print('Connected to server.')
     except:
-        print('First Connection failed.')
+        print('Failed to connect to server on first connection.')
     
     th_event.clear()
-    th1 = Thread(recvcmd_th, client_sock)
+    #th1 = Thread(recvcmd_th, client_sock)
 
     controller = MyController(interface="/dev/input/js0", connecting_using_ds4drv=False)
-    controller.listen()
+    count = 0
+    while count < 2:
+        try:
+            controller.listen()
+        except Exception as e:
+            print(str(e))
+            print('Retry to execute listen().')
+            count += 1
+            time.sleep(1)
+            continue
+    print('Program was terminated.')
+
 
 if __name__ == '__main__':
     th_event = Event()
