@@ -1,9 +1,13 @@
 // define pin
-#define HEATER       0
-#define ROBOT_ARM    0
-#define ROBOT_HAND   0
-#define L_CATEPILLAR 0
-#define R_CATEPILLAR 0
+#define HEATER           0
+#define ROBOT_ARM        0
+#define ROBOT_ARM_REV    0
+#define ROBOT_HAND       0
+#define ROBOT_HAND_REV   0
+#define L_CATEPILLAR     0
+#define L_CATEPILLAR_REV 0
+#define R_CATEPILLAR     0
+#define R_CATEPILLAR_REV 0
 
 // define PWM
 
