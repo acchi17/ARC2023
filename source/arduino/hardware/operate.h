@@ -33,7 +33,7 @@ typedef enum {
 
 // plan 2
 
-// type enum {
+// typedef enum {
 //     REST,       // Rest
 //     LFWD,       // Left  Forward
 //     RFWD,       // Right Forward
@@ -42,6 +42,4 @@ typedef enum {
 //     LTRN,       // Left  Turn
 //     RTRN,       // Right Turn
 // } derection;
-    
-
 
