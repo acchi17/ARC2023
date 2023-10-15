@@ -43,3 +43,10 @@ typedef enum {
 //     RTRN,       // Right Turn
 // } derection;
 
+// plan 3
+
+//typedef struct {
+//    int left,
+//    int right,
+//} direction;
+
