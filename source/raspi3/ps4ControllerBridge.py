@@ -1,74 +1,101 @@
-import socket, time
-from threading import Thread, Event
 from pyPS4Controller.controller import Controller
 
-SERVER_IP_ADDR = '192.168.5.10'
-SERVER_PORT_NUM = 55555
-
 class MyController(Controller):
-
-    def __init__(self, **kwargs):
+    def __init__(self, com, **kwargs):
         Controller.__init__(self, **kwargs)
-
+        self.button_status = [False] * 12
+        # 0:up, 1:down, 2:left, 3:right, 
+        # 4:triangle, 5:cross, 6:square, 7:circle, 
+        # 8:L1, 9:L2, 10:R1, 11:R2
+        self.com = com
+        self.com.start()
+            
     def on_up_arrow_press(self):
-        # send command: SET V_MOVE_FORWARD 
-        print("on_up_arrow_press() raised.")
+        self.button_status[0] = True
+        self.com.sendcmd('V_MOVE_FORWARD', []) 
 
     def on_down_arrow_press(self):
-        # send command: SET V_MOVE_BACKWARD
-        print("on_down_arrow_press() raised")
+        self.button_status[1] = True
+        self.com.sendcmd('V_MOVE_BACKWARD', []) 
+
+    def on_up_down_arrow_release(self):
+        self.button_status[0] = False
+        self.button_status[1] = False
+        self.com.sendcmd('V_STOP', []) 
 
     def on_left_arrow_press(self):
-        # send command: SET V_ROT_LEFT
-        print("on_left_arrow_press() raised.")
+        self.button_status[2] = True
+        self.com.sendcmd('V_ROT_LEFT', []) 
 
     def on_right_arrow_press(self):
-        # send command: SET V_ROT_RIGHT
-        print("on_right_arrow_press() raised.")
+        self.button_status[3] = True
+        self.com.sendcmd('V_ROT_ROGHT', []) 
 
-# def presend(socket):
-#     if socket.connected
+    def on_left_right_arrow_release(self):
+        self.button_status[2] = False
+        self.button_status[3] = False
+        self.com.sendcmd('V_STOP', [])
 
-def recvcmd_th(socket):
-    while True:
-        time.sleep(0.2)
-        if not th_event.wait(0.1):
-            continue
-        try:
-            recv_msg  = socket.recv(1024)
-            if len(recv_msg) > 0:
-                print(recv_msg)
-        except Exception as error:    
-            print(type(error))
-            print(error)
+    def on_triangle_press(self):
+        self.button_status[4] = True
+        print("on_triangle_press")
 
-def main():
-    client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_sock.settimeout(3.0)
-    try:
-        print('Connecting to server.')
-        client_sock.connect((SERVER_IP_ADDR, SERVER_PORT_NUM))
-        print('Connected to server.')
-    except:
-        print('Failed to connect to server on first connection.')
-    
-    th_event.clear()
-    #th1 = Thread(recvcmd_th, client_sock)
+    def on_triangle_release(self):
+        self.button_status[4] = False
+        print("on_triangle_release") 
 
-    controller = MyController(interface="/dev/input/js0", connecting_using_ds4drv=False)
-    count = 0
-    while count < 2:
-        try:
-            controller.listen()
-        except Exception as e:
-            print(str(e))
-            print('Retry to execute listen().')
-            count += 1
-            time.sleep(1)
-            continue
-    print('Program was terminated.')
+    def on_x_press(self):
+        self.button_status[5] = True
+        print("on_x_press")
 
+    def on_x_release(self):
+        self.button_status[5] = False
+        print("on_x_release")
 
-if __name__ == '__main__':
-    th_event = Event()
-    main()
+    def on_square_press(self):
+        self.button_status[6] = True
+        print("on_square_press")
+
+    def on_square_release(self):
+        self.button_status[6] = False
+        print("on_square_release")
+
+    def on_circle_press(self):
+        self.button_status[7] = True
+        self.com.sendcmd('HEATER_ONOFF', ['ON']) 
+
+    def on_circle_release(self):
+        self.button_status[7] = False
+        self.com.sendcmd('HEATER_ONOFF', ['OFF'])
+
+    def on_L1_press(self):
+        self.button_status[8] = True
+        print("on_L1_press")
+
+    def on_L1_release(self):
+        self.button_status[8] = False
+        print("on_L1_release")
+
+    def on_L2_press(self, value):
+        self.button_status[9] = True
+        print("on_L2_press: {}".format(value))
+
+    def on_L2_release(self):
+        self.button_status[9] = False
+        print("on_L2_release")
+
+    def on_R1_press(self):
+        self.button_status[10] = True
+        print("on_R1_press")
+
+    def on_R1_release(self):
+        self.button_status[10] = False
+        print("on_R1_release")
+
+    def on_R2_press(self, value):
+        self.button_status[11] = True
+        print("on_R2_press: {}".format(value))
+
+    def on_R2_release(self):
+        self.button_status[11] = False
+        print("on_R2_release") 
