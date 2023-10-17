@@ -97,3 +97,8 @@ bool get_opr_ctpl(opr_ctpl* opr, direction d) {
     return 0;
 }
 
+void get_opr_arm() {}
+
+void get_opr_hand() {}
+
+void get_opr_heater() {}
