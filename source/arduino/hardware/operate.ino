@@ -12,7 +12,7 @@ typedef struct {
 void get_opr_ctpl(opr_ctpl, direction);
 
 // setup
-void init() {
+void init(void) {
     // pin mode
     pinMode(HEATER,           OUTPUT);
     pinMode(ROBOT_ARM,        OUTPUT);
@@ -42,12 +42,12 @@ bool contrl_catepillar(direction dir) {
     return true;
 }
 
-bool contrl_robot_arm(void) {
+bool contrl_robot_arm(oparm op) {
     // control robot arm!
     return true;
 }
 
-bool contrl_robot_hand(void) {
+bool contrl_robot_hand(ophand op) {
     // control robot hand
     return true;
 }
@@ -92,6 +92,7 @@ bool get_opr_ctpl(opr_ctpl* opr, direction d) {
         opr->left_rev  = 0;
         opr->right     = 0;
         opr->right_rev = 0;
+        break;
     }
     return 0;
 }

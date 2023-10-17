@@ -24,6 +24,22 @@
 
 // define enum
 
+// operate hand
+
+typedef enum {
+    REST,
+    OPEN,
+    CLOSE,
+} ophand;
+
+// operate arm
+
+typedef enum {
+    REST,
+    UP,
+    DOWN,
+} oparm;
+
 // operate catepillar
 
 // plan 1
@@ -53,4 +69,16 @@ typedef enum {
 //    int left,
 //    int right,
 //} direction;
+
+
+// function
+
+// setup Pin mode
+void init(void);
+
+// operate arduino
+bool contrl_catepillar(direction);
+bool contrl_robot_arm(oparm);
+bool contrl_robot_hand(ophand);
+bool contrl_heater(bool);
 
