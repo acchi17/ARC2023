@@ -41,9 +41,10 @@ void loop()
         Serial.println("Received message: " + recvMsg);
 
         // Parse message
+        recvMsg.trim();
         int fieldNum = split(recvMsg, ' ', recvCmdFieldList, RECV_CMD_FIELD_NUM_MAX);
         recvMsg = "";
-        if (fieldNum < 3) return;
+        if (fieldNum < 2) return;
         for(int i = 0; i < RECV_CMD_FIELD_NUM_MAX; i++)
         {
           if (recvCmdFieldList[i] != "") Serial.println("Recv: " + recvCmdFieldList[i]);
