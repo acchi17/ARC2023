@@ -9,6 +9,11 @@ typedef struct {
     int right_rev,
 } opr_ctpl;
 
+typedef struct {
+    int normal,
+    int reverse,
+} opr_body;
+
 void get_opr_ctpl(opr_ctpl, direction);
 
 // setup
@@ -42,8 +47,12 @@ bool contrl_catepillar(direction dir) {
     return true;
 }
 
-bool contrl_robot_arm(oparm op) {
+bool contrl_robot_arm(oparm opr_arm) {
     // control robot arm!
+    opr_body opr_pwm;
+
+    get_opr_arm(&opr, opr_arm);
+    // TODO: analogwrite
     return true;
 }
 
@@ -54,6 +63,12 @@ bool contrl_robot_hand(ophand op) {
 
 bool contrl_heater(bool is_on) {
     // control heater
+    if (is_on) {
+        analogWrite(HEATER, PWM_HEATER_DEFAULT);
+    } else {
+        analogWrite(HEATER, 0);
+    }
+
     return true;
 }
 

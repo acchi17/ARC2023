@@ -12,11 +12,11 @@
 // define PWM
 
 // default
+#define PWM_HEATER_DEFAULT     255
 #define PWM_ARM_DEFAULT        255
+#define PWM_ARM_REV_DEFAULT    255
 #define PWM_HAND_DEFAULT       255
 #define PWM_HAND_REV_DEFAULT   255
-#define PWM_HEATER_DEFAULT     255
-#define PWM_HEATER_REV_DEFAULT 255
 #define PWM_L_CATE_DEFAULT     255
 #define PWM_L_CATE_REV_DEFAULT 255
 #define PWM_R_CATE_DEFAULT     255
