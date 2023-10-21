@@ -2,22 +2,21 @@
 
 // define pin
 
-#define HEATER           0
-#define ROBOT_ARM_UP     0
-#define ROBOT_ARM_DOWN   0
-#define ROBOT_HAND_OPEN  0
-#define ROBOT_HAND_CLOSE 0
-#define L_CATEPILLAR     0
-#define L_CATEPILLAR_REV 0
-#define R_CATEPILLAR     0
-#define R_CATEPILLAR_REV 0
+#define HEATER            5   // degial pin 05
+#define ROBOT_ARM_UP     23   // degial pin 10
+#define ROBOT_ARM_DOWN   24   // degial pin 11
+#define ROBOT_HAND_OPEN  25   // degial pin 12
+#define ROBOT_HAND_CLOSE 26   // degial pin 13
+#define L_CATEPILLAR     17   // degial pin 08
+#define L_CATEPILLAR_REV 18   // degial pin 09
+#define R_CATEPILLAR     15   // degial pin 06
+#define R_CATEPILLAR_REV 16   // degial pin 07
 
 // define PWM
 
 // default
-#define PWM_DEFAULT 128
+#define PWM_DEFAULT 255
 
-#define PWM_HEATER_DEFAULT     PWM_DEFAULT
 #define PWM_ARM_DEFAULT        PWM_DEFAULT
 #define PWM_ARM_REV_DEFAULT    PWM_DEFAULT
 #define PWM_HAND_DEFAULT       PWM_DEFAULT
@@ -62,6 +61,7 @@ typedef char opr;
 
 #define CTPL_REST     OPR_REST                      // Rest
 #define CTPL_FWRD     OPR_L_NORMAL  | OPR_R_NORMAL  // Forward
+#define CTPL_BKWD     OPR_L_REVERSE | OPR_R_REVERSE // Backward
 #define CTPL_LFWD                     OPR_R_NORMAL  // Left Forward
 #define CTPL_RFWD     OPR_L_NORMAL                  // Right Forward
 #define CTPL_LBWD                     OPR_R_REVERSE // Left  Backward
@@ -72,11 +72,14 @@ typedef char opr;
 
 
 // setup Pin mode
-void init(void);
+void init_pinMode(void);
 
 // operate arduino
 bool contrl_catepillar(opr);
 bool contrl_robot_arm(opr);
 bool contrl_robot_hand(opr);
 bool contrl_heater(bool);
+
+// emergency stop
+void emergency_stop();
 

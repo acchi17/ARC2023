@@ -11,7 +11,7 @@ typedef struct {
 void get_cmd(opr op, signal* sig);
 
 // setup
-void init(void) {
+void init_pinMode(void) {
     // pin mode
     pinMode(HEATER,           OUTPUT);
     pinMode(ROBOT_ARM_UP,     OUTPUT);
@@ -30,7 +30,7 @@ bool contrl_catepillar(opr op) {
     // control catepillar!
     signal sig;
 
-    get_cmd(opr, &sig);
+    get_cmd(op, &sig);
 
     // operate DC Morter
     analogWrite(L_CATEPILLAR    , PWM_L_CATE_DEFAULT     * sig.ln);
@@ -44,7 +44,7 @@ bool contrl_robot_arm(opr op) {
     // control robot arm!
     signal sig;
 
-    get_cmd(opr, &sig);
+    get_cmd(op, &sig);
 
     // TODO: analogwrite
     analogWrite(ROBOT_ARM_UP  , PWM_ARM_DEFAULT     * sig.rn);
@@ -56,7 +56,7 @@ bool contrl_robot_hand(opr op) {
     // control robot hand
     signal sig;
 
-    get_cmd(opr, &sig);
+    get_cmd(op, &sig);
 
     analogWrite(ROBOT_HAND_OPEN,  PWM_HAND_DEFAULT     * sig.rn);
     analogWrite(ROBOT_HAND_CLOSE, PWM_HAND_REV_DEFAULT * sig.rr);
@@ -66,23 +66,32 @@ bool contrl_robot_hand(opr op) {
 bool contrl_heater(bool is_on) {
     // control heater
     if (is_on) {
-        analogWrite(HEATER, PWM_HEATER_DEFAULT);
+        digitalWrite(HEATER, HIGH);
     } else {
-        analogWrite(HEATER, 0);
+        digitalWrite(HEATER, LOW);
     }
 
     return true;
 }
 
+// emergency stop
+bool emergency_stop() {
+    contrl_heater(false);
+    contrl_robot_hand(HAND_REST);
+    contrl_robot_arm(ARM_REST);
+    contrl_catepillar(CTPL_REST);
+    return true;
+}
+
 // function
 
-bool get_cmd(opr op, signal* sig) {
+void get_cmd(opr op, signal* sig) {
     char ln, lr, rn, rr;
 
-    ln = (op & L_NORMAL)  == OPR_L_NORMAL;
-    lr = (op & L_REVERSE) == OPR_L_REVERSE;
-    rn = (op & R_NORMAL)  == OPR_R_NORMAL;
-    rr = (op & R_REVERSE) == OPR_R_REVERSE;
+    ln = (op & OPR_L_NORMAL)  == OPR_L_NORMAL;
+    lr = (op & OPR_L_REVERSE) == OPR_L_REVERSE;
+    rn = (op & OPR_R_NORMAL)  == OPR_R_NORMAL;
+    rr = (op & OPR_R_REVERSE) == OPR_R_REVERSE;
 
     sig->ln = (int)ln;
     sig->lr = (int)lr;
@@ -90,4 +99,5 @@ bool get_cmd(opr op, signal* sig) {
     sig->rr = (int)rr;
     return;
 }
+
 
