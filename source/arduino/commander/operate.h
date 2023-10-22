@@ -53,7 +53,7 @@ typedef char opr;
 
 // operate ARM
 
-#define ARM_RESTA     OPR_REST
+#define ARM_REST      OPR_REST
 #define ARM_UP        OPR_NORMAL
 #define ARM_DOWN      OPR_REVERSE
 

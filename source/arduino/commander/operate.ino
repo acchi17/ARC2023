@@ -75,7 +75,7 @@ bool contrl_heater(bool is_on) {
 }
 
 // emergency stop
-bool emergency_stop() {
+void emergency_stop() {
     contrl_heater(false);
     contrl_robot_hand(HAND_REST);
     contrl_robot_arm(ARM_REST);
