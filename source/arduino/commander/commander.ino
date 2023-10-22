@@ -1,3 +1,5 @@
+#include "operate.h"
+
 typedef int(*pFunc)(String);
 typedef struct{
   String cmdName; 
@@ -34,24 +36,28 @@ int ledLight(String &param)
 int v_move_backward(String &param)
 {
   Serial.println("v_move_backward() param: " + param);
+  contrl_catepillar(CTPL_BKWD);
   return 0;
 }
 
 int v_move_forward(String &param)
 {
   Serial.println("v_move_forward() param: " + param);
+  contrl_catepillar(CTPL_FWRD);
   return 0;
 }
 
 int v_rot_left(String &param)
 {
   Serial.println("v_rot_left() param: " + param);
+  contrl_catepillar(CTPL_LTRN);
   return 0;  
 }
 
 int v_rot_right(String &param)
 {
   Serial.println("v_rot_right() param: " + param);
+  contrl_catepillar(CTPL_RTRN);
   return 0;  
 }
 
