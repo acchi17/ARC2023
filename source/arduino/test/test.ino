@@ -1,4 +1,4 @@
-#include "../hardware/operate.h"
+#include "operate.h"
 
 void setup() {
     init_pinMode();
