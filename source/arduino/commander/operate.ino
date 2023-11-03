@@ -30,6 +30,14 @@ bool contrl_catepillar(opr op) {
     // control catepillar!
     signal sig;
 
+    if (op == CTPL_STOP) {
+        analogWrite(L_CATEPILLAR    , 255);
+        analogWrite(L_CATEPILLAR_REV, 255);
+        analogWrite(R_CATEPILLAR    , 255);
+        analogWrite(R_CATEPILLAR_REV, 255);
+        return true;
+    }
+
     get_cmd(op, &sig);
 
     // operate DC Morter
@@ -44,6 +52,12 @@ bool contrl_robot_arm(opr op) {
     // control robot arm!
     signal sig;
 
+    if (op == ARM_STOP) {
+        analogWrite(ROBOT_ARM_UP  , 255);
+        analogWrite(ROBOT_ARM_DOWN, 255);
+        return true;
+    }
+
     get_cmd(op, &sig);
 
     // TODO: analogwrite
@@ -55,6 +69,12 @@ bool contrl_robot_arm(opr op) {
 bool contrl_robot_hand(opr op) {
     // control robot hand
     signal sig;
+
+    if (op == HAND_STOP) {
+        analogWrite(ROBOT_HAND_OPEN,  255);
+        analogWrite(ROBOT_HAND_CLOSE, 255);
+        return true;
+    }
 
     get_cmd(op, &sig);
 
@@ -99,5 +119,4 @@ void get_cmd(opr op, signal* sig) {
     sig->rr = (int)rr;
     return;
 }
-
 

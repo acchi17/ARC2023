@@ -34,32 +34,40 @@ typedef char opr;
 
 // for CATEPILLAR
 
+#define OPR_LR_REST   0
 #define OPR_L_NORMAL  (1 << 3)
 #define OPR_L_REVERSE (1 << 2)
 #define OPR_R_NORMAL  (1 << 1)
 #define OPR_R_REVERSE (1 << 0)
+
+#define OPR_L_STOP    OPR_L_NORMAL | OPR_L_REVERSE
+#define OPR_R_STOP    OPR_R_NORMAL | OPR_R_REVERSE
 
 // OTHER (ROBOT ARM, ROBOT HAND)
 
 #define OPR_REST      0
 #define OPR_NORMAL    OPR_R_NORMAL
 #define OPR_REVERSE   OPR_R_REVERSE
+#define OPR_STOP      OPR_R_STOP
 
 // for ROBOT HAND
 
 #define HAND_REST     OPR_REST
 #define HAND_OPEN     OPR_NORMAL
 #define HAND_CLOSE    OPR_REVERSE
+#define HAND_STOP     OPR_STOP
 
 // operate ARM
 
 #define ARM_REST      OPR_REST
 #define ARM_UP        OPR_NORMAL
 #define ARM_DOWN      OPR_REVERSE
+#define ARM_STOP      OPR_STOP
 
 // operate CATEPILLAR
 
-#define CTPL_REST     OPR_REST                      // Rest
+#define CTPL_REST     OPR_LR_REST                   // Rest
+#define CTPL_STOP     OPR_L_STOP    | OPR_R_STOP    // Stop
 #define CTPL_FWRD     OPR_L_NORMAL  | OPR_R_NORMAL  // Forward
 #define CTPL_BKWD     OPR_L_REVERSE | OPR_R_REVERSE // Backward
 #define CTPL_LFWD                     OPR_R_NORMAL  // Left Forward
@@ -68,8 +76,6 @@ typedef char opr;
 #define CTPL_RBWD     OPR_L_REVERSE                 // Right Backward
 #define CTPL_LTRN     OPR_L_REVERSE | OPR_R_NORMAL  // Left  Turn
 #define CTPL_RTRN     OPR_L_NORMAL  | OPR_R_REVERSE // Right Turn
-
-
 
 // setup Pin mode
 void init_pinMode(void);
