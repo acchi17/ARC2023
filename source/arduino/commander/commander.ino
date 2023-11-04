@@ -66,3 +66,17 @@ int v_stop(String &param)
   Serial.println("v_stop() param: " + param);
   return 0;
 }
+
+int v_heater_onoff(String &param)
+{
+    Serial.println("v_heater_onoff() param: " + param);
+    
+    if (param == "ON") {
+        Serial.println("ON");
+    } else {
+        Serial.println("OFF");
+    }
+
+    return 0;
+}
+
