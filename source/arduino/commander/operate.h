@@ -40,8 +40,8 @@ typedef char opr;
 #define OPR_R_NORMAL  (1 << 1)
 #define OPR_R_REVERSE (1 << 0)
 
-#define OPR_L_STOP    OPR_L_NORMAL | OPR_L_REVERSE
-#define OPR_R_STOP    OPR_R_NORMAL | OPR_R_REVERSE
+#define OPR_L_STOP    (OPR_L_NORMAL | OPR_L_REVERSE)
+#define OPR_R_STOP    (OPR_R_NORMAL | OPR_R_REVERSE)
 
 // OTHER (ROBOT ARM, ROBOT HAND)
 
@@ -66,19 +66,20 @@ typedef char opr;
 
 // operate CATEPILLAR
 
-#define CTPL_REST     OPR_LR_REST                   // Rest
-#define CTPL_STOP     OPR_L_STOP    | OPR_R_STOP    // Stop
-#define CTPL_FWRD     OPR_L_NORMAL  | OPR_R_NORMAL  // Forward
-#define CTPL_BKWD     OPR_L_REVERSE | OPR_R_REVERSE // Backward
-#define CTPL_LFWD                     OPR_R_NORMAL  // Left Forward
-#define CTPL_RFWD     OPR_L_NORMAL                  // Right Forward
-#define CTPL_LBWD                     OPR_R_REVERSE // Left  Backward
-#define CTPL_RBWD     OPR_L_REVERSE                 // Right Backward
-#define CTPL_LTRN     OPR_L_REVERSE | OPR_R_NORMAL  // Left  Turn
-#define CTPL_RTRN     OPR_L_NORMAL  | OPR_R_REVERSE // Right Turn
+#define CTPL_REST     OPR_LR_REST                       // Rest
+#define CTPL_STOP     (OPR_L_STOP    | OPR_R_STOP)      // Stop
+#define CTPL_FWRD     (OPR_L_NORMAL  | OPR_R_NORMAL)    // Forward
+#define CTPL_BKWD     (OPR_L_REVERSE | OPR_R_REVERSE)   // Backward
+#define CTPL_LFWD                     OPR_R_NORMAL      // Left Forward
+#define CTPL_RFWD     OPR_L_NORMAL                      // Right Forward
+#define CTPL_LBWD                     OPR_R_REVERSE     // Left  Backward
+#define CTPL_RBWD     OPR_L_REVERSE                     // Right Backward
+#define CTPL_LTRN     (OPR_L_REVERSE | OPR_R_NORMAL)    // Left  Turn
+#define CTPL_RTRN     (OPR_L_NORMAL  | OPR_R_REVERSE)   // Right Turn
 
 // setup Pin mode
 void init_pinMode(void);
+void pwm_normal(void);
 
 // operate arduino
 bool contrl_catepillar(opr);
@@ -87,5 +88,5 @@ bool contrl_robot_hand(opr);
 bool contrl_heater(bool);
 
 // emergency stop
-void emergency_stop();
+void emergency_stop(void);
 
