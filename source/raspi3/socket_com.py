@@ -51,7 +51,8 @@ class ClientSocketCom():
         except Exception as error:
             print('Failed to send, exception has occurred.')
             print(error)
-            self.connect()    
+            self.stop();
+            self.start();
 
     def sendcmd(self, cmdName, cmdParams):
         msg = self.getCmd(cmdName, cmdParams)
@@ -76,8 +77,8 @@ class ClientSocketCom():
             self.connect()
 
     def stop(self):
+        self.th_event.clear()
         if self.client_sock is not None:
-            self.th_event.clear()
             self.client_sock.close()
             self.client_sock = None
         
