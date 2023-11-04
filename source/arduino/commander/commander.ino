@@ -87,14 +87,14 @@ int v_stop(String &param)
 int c_move_lower(String &param)
 {
   Serial.println("c_move_lower() param: " + param);
-  contrl_robot_arm(ARM_UP);
+  contrl_robot_arm(ARM_DOWN);
   return 0;
 }
 
 int c_move_upper(String &param)
 {
   Serial.println("c_move_upper() param: " + param);
-  contrl_robot_arm(ARM_DOWN);
+  contrl_robot_arm(ARM_UP);
   return 0;
 }
 
