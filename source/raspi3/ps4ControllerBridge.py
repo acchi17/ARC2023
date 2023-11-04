@@ -29,7 +29,7 @@ class MyController(Controller):
 
     def on_right_arrow_press(self):
         self.button_status[3] = True
-        self.com.sendcmd('V_ROT_ROGHT', []) 
+        self.com.sendcmd('V_ROT_RIGHT', []) 
 
     def on_left_right_arrow_release(self):
         self.button_status[2] = False
