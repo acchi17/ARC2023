@@ -3,8 +3,8 @@
 // define pin
 
 #define HEATER            5   // degial pin 05
-#define ROBOT_ARM_UP     23   // degial pin 10
-#define ROBOT_ARM_DOWN   24   // degial pin 11
+#define ROBOT_ARM_UP     2   // degial pin 10
+#define ROBOT_ARM_DOWN   3   // degial pin 11
 #define ROBOT_HAND_OPEN  25   // degial pin 12
 #define ROBOT_HAND_CLOSE 26   // degial pin 13
 #define L_CATEPILLAR     17   // degial pin 08
@@ -17,8 +17,8 @@
 // default
 #define PWM_DEFAULT 255
 
-#define PWM_ARM_DEFAULT        PWM_DEFAULT
-#define PWM_ARM_REV_DEFAULT    PWM_DEFAULT
+#define PWM_ARM_DEFAULT        126
+#define PWM_ARM_REV_DEFAULT    63
 #define PWM_HAND_DEFAULT       PWM_DEFAULT
 #define PWM_HAND_REV_DEFAULT   PWM_DEFAULT
 #define PWM_L_CATE_DEFAULT     PWM_DEFAULT
