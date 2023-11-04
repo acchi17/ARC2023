@@ -69,14 +69,15 @@ class MyController(Controller):
         self.com.sendcmd('HEATER_ONOFF', ['OFF'])
 
     def on_L1_press(self):
-        print("on_L1_press")
         self.button_status[8] = True
         if self.button_status[10]:
             self.com.sendcmd('ALL_STOP', [])
+        else:
+            self.com.sendcmd('C_MOVE_LOWER', [])
         
     def on_L1_release(self):
-        print("on_L1_release")
         self.button_status[8] = False
+        self.com.sendcmd('C_STOP', [])
 
     def on_L2_press(self, value):
         print("on_L2_press: {}".format(value))
@@ -102,5 +103,5 @@ class MyController(Controller):
         self.com.sendcmd('C_MOVE_LOWER', [])
         
     def on_R2_release(self):
-        print("on_R2_release") 
         self.button_status[11] = False
+        self.com.sendcmd('C_STOP', [])
