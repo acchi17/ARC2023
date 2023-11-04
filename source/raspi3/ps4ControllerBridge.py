@@ -29,7 +29,7 @@ class MyController(Controller):
 
     def on_right_arrow_press(self):
         self.button_status[3] = True
-        self.com.sendcmd('V_ROT_RIGHT', []) 
+        self.com.sendcmd('V_ROT_ROGHT', []) 
 
     def on_left_right_arrow_release(self):
         self.button_status[2] = False
@@ -38,27 +38,27 @@ class MyController(Controller):
 
     def on_triangle_press(self):
         self.button_status[4] = True
-        print("on_triangle_press")
-
+        self.com.sendcmd('LEDLIGHT', ['ON'])
+        
     def on_triangle_release(self):
         self.button_status[4] = False
-        print("on_triangle_release") 
-
+        self.com.sendcmd('LEDLIGHT', ['OFF'])
+        
     def on_x_press(self):
         self.button_status[5] = True
-        print("on_x_press")
-
+        self.com.sendcmd('H_MOVE_RLS', []) 
+        
     def on_x_release(self):
         self.button_status[5] = False
-        print("on_x_release")
-
+        self.com.sendcmd('H_STOP', [])
+        
     def on_square_press(self):
         self.button_status[6] = True
-        print("on_square_press")
-
+        self.com.sendcmd('H_MOVE_HLD', []) 
+        
     def on_square_release(self):
         self.button_status[6] = False
-        print("on_square_release")
+        self.com.sendcmd('H_STOP', [])
 
     def on_circle_press(self):
         self.button_status[7] = True
@@ -69,33 +69,38 @@ class MyController(Controller):
         self.com.sendcmd('HEATER_ONOFF', ['OFF'])
 
     def on_L1_press(self):
-        self.button_status[8] = True
         print("on_L1_press")
-
+        self.button_status[8] = True
+        if self.button_status[10]:
+            self.com.sendcmd('ALL_STOP', [])
+        
     def on_L1_release(self):
-        self.button_status[8] = False
         print("on_L1_release")
+        self.button_status[8] = False
 
     def on_L2_press(self, value):
-        self.button_status[9] = True
         print("on_L2_press: {}".format(value))
+        self.button_status[9] = True
 
     def on_L2_release(self):
-        self.button_status[9] = False
         print("on_L2_release")
-
+        self.button_status[9] = False
+        
     def on_R1_press(self):
         self.button_status[10] = True
-        print("on_R1_press")
+        if self.button_status[8]:
+            self.com.sendcmd('ALL_STOP', []) 
+        else:
+            self.com.sendcmd('C_MOVE_UPPER', [])        
 
     def on_R1_release(self):
         self.button_status[10] = False
-        print("on_R1_release")
-
+        self.com.sendcmd('C_STOP', [])
+        
     def on_R2_press(self, value):
         self.button_status[11] = True
-        print("on_R2_press: {}".format(value))
-
+        self.com.sendcmd('C_MOVE_LOWER', [])
+        
     def on_R2_release(self):
-        self.button_status[11] = False
         print("on_R2_release") 
+        self.button_status[11] = False
