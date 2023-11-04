@@ -108,18 +108,21 @@ int c_stop(String &param)
 int h_move_hld(String &param)
 {
     Serial.println("h_move_hld() param: " + param);
+    contrl_robot_hand(HAND_CLOSE);
     return 0;
 }
 
 int h_move_rls(String &param)
 {
     Serial.println("h_move_rls() param: " + param);
+    contrl_robot_hand(HAND_OPEN);
     return 0;
 }
 
 int h_stop(String &param)
 {
     Serial.println("h_stop() param: " + param);
+    contrl_robot_hand(HAND_REST);
     return 0;
 }
 
