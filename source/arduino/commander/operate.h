@@ -70,9 +70,9 @@ typedef char opr;
 #define CTPL_STOP     (OPR_L_STOP    | OPR_R_STOP)      // Stop
 #define CTPL_FWRD     (OPR_L_NORMAL  | OPR_R_NORMAL)    // Forward
 #define CTPL_BKWD     (OPR_L_REVERSE | OPR_R_REVERSE)   // Backward
-#define CTPL_LFWD                     OPR_R_NORMAL      // Left Forward
+#define CTPL_LFWD                      OPR_R_NORMAL      // Left Forward
 #define CTPL_RFWD     OPR_L_NORMAL                      // Right Forward
-#define CTPL_LBWD                     OPR_R_REVERSE     // Left  Backward
+#define CTPL_LBWD                      OPR_R_REVERSE     // Left  Backward
 #define CTPL_RBWD     OPR_L_REVERSE                     // Right Backward
 #define CTPL_LTRN     (OPR_L_REVERSE | OPR_R_NORMAL)    // Left  Turn
 #define CTPL_RTRN     (OPR_L_NORMAL  | OPR_R_REVERSE)   // Right Turn
