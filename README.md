@@ -1,6 +1,14 @@
 # arc2023
 
-## user settings
+## requirements
+
+* raspi
+  * model: Raspberry Pi Model B+
+  * OS : Raspberry Pi OS
+* Arduino
+  * 不明
+
+## raspi settings
 
 OS側で必要となる作業は以下の通りです。
 
@@ -23,3 +31,7 @@ cd ARC2023
 chmod 700 SetupAutoStart.sh
 sudo bash SetupAutoStart.sh
 ```
+
+### setting IP address
+
+eth0 に `192.168.5.11/24` を割り当てます。設定方法は何でもいいです。
